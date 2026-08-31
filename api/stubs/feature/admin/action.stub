@@ -1,0 +1,13 @@
+<?php
+
+namespace App\Features\{{ feature }}\Admin\Actions;
+
+use App\Features\{{ feature }}\Admin\DTOs\{{ operation }}{{ feature }}DTO;
+
+class {{ operation }}{{ feature }}Action
+{
+    public function handle({{ operation }}{{ feature }}DTO $dto): mixed
+    {
+        //
+    }
+}
