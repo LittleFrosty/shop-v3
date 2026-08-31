@@ -1,0 +1,15 @@
+<?php
+
+namespace App\Features\{{ feature }}\Admin\DTOs;
+
+readonly class {{ operation }}{{ feature }}DTO
+{
+    public function __construct()
+    {
+    }
+
+    public static function fromArray(array $data): self
+    {
+        return new self();
+    }
+}

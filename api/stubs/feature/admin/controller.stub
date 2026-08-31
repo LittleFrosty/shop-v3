@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Features\{{ feature }}\Admin\Controllers;
+
+use App\Features\{{ feature }}\Admin\Actions\{{ operation }}{{ feature }}Action;
+use App\Features\{{ feature }}\Admin\DTOs\{{ operation }}{{ feature }}DTO;
+use App\Features\{{ feature }}\Admin\Requests\{{ operation }}{{ feature }}Request;
+use App\Http\Controllers\Controller;
+
+class {{ operation }}{{ feature }}Controller extends Controller
+{
+    public function __invoke(
+        {{ operation }}{{ feature }}Request $request,
+        {{ operation }}{{ feature }}Action $action
+    ) {
+        $dto = {{ operation }}{{ feature }}DTO::fromArray(
+            $request->validated()
+        );
+
+        return $action->handle($dto);
+    }
+}
