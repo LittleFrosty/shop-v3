@@ -21,26 +21,26 @@ return new class extends Migration
         });
 
         Schema::table('product_description', function (Blueprint $table) {
-            $table->foreign('product_id')->references('product_id')->on('product')->cascadeOnDelete();
+            $table->foreign('product_id')->references('id')->on('product')->cascadeOnDelete();
         });
 
         Schema::table('product_to_category', function (Blueprint $table) {
-            $table->foreign('product_id')->references('product_id')->on('product')->cascadeOnDelete();
+            $table->foreign('product_id')->references('id')->on('product')->cascadeOnDelete();
             $table->foreign('category_id')->references('id')->on('category')->cascadeOnDelete();
         });
 
         Schema::table('product_images', function (Blueprint $table) {
-            $table->foreign('product_id')->references('product_id')->on('product')->cascadeOnDelete();
+            $table->foreign('product_id')->references('id')->on('product')->cascadeOnDelete();
         });
 
         Schema::table('product_options', function (Blueprint $table) {
-            $table->foreign('product_id')->references('product_id')->on('product')->cascadeOnDelete();
+            $table->foreign('product_id')->references('id')->on('product')->cascadeOnDelete();
             $table->foreign('option_id')->references('id')->on('options')->cascadeOnDelete();
             $table->foreign('option_value_id')->references('id')->on('option_values')->cascadeOnDelete();
         });
 
         Schema::table('product_attributes', function (Blueprint $table) {
-            $table->foreign('product_id')->references('product_id')->on('product')->cascadeOnDelete();
+            $table->foreign('product_id')->references('id')->on('product')->cascadeOnDelete();
             $table->foreign('attribute_id')->references('id')->on('attribute')->cascadeOnDelete();
             $table->foreign('attribute_value_id')->references('id')->on('attribute_values')->cascadeOnDelete();
         });
@@ -59,7 +59,7 @@ return new class extends Migration
 
         Schema::table('cart_products', function (Blueprint $table) {
             $table->foreign('cart_id')->references('id')->on('cart')->cascadeOnDelete();
-            $table->foreign('product_id')->references('product_id')->on('product')->restrictOnDelete();
+            $table->foreign('product_id')->references('id')->on('product')->restrictOnDelete();
         });
 
         Schema::table('cart_notes', function (Blueprint $table) {
@@ -79,12 +79,12 @@ return new class extends Migration
         });
 
         Schema::table('related_products', function (Blueprint $table) {
-            $table->foreign('product_id')->references('product_id')->on('product')->cascadeOnDelete();
-            $table->foreign('related_id')->references('product_id')->on('product')->cascadeOnDelete();
+            $table->foreign('product_id')->references('id')->on('product')->cascadeOnDelete();
+            $table->foreign('related_id')->references('id')->on('product')->cascadeOnDelete();
         });
 
         Schema::table('product_review', function (Blueprint $table) {
-            $table->foreign('product_id')->references('product_id')->on('product')->cascadeOnDelete();
+            $table->foreign('product_id')->references('id')->on('product')->cascadeOnDelete();
             $table->foreign('user_id')->references('id')->on('users')->nullOnDelete();
         });
 
