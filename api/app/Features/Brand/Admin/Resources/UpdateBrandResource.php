@@ -1,0 +1,14 @@
+<?php
+
+namespace App\Features\Brand\Admin\Resources;
+
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
+
+class UpdateBrandResource extends JsonResource{
+  public function toArray(Request $request): array{
+    return [
+    
+    ];
+  }
+}

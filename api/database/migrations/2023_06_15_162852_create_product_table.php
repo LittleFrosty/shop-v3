@@ -25,7 +25,7 @@ return new class extends Migration
         $table->longText('bundle_of_models')->nullable();
         $table->integer('out_of_stock_status')->default(0);
         $table->unsignedBigInteger('brand_id')->nullable()->index();
-        $table->integer('status')->index();
+        $table->string('status',12)->index();
         $table->string('url',256)->unique()->index();
         $table->integer('sort_order')->index();
         $table->timestamps();
