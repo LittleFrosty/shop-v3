@@ -15,7 +15,11 @@ return new class extends Migration
       Schema::create('brand', function (Blueprint $table) {
         $table->bigIncrements('id');
         $table->string('title', 256);
+        $table->text("description");
+        $table->string('meta_title', 256);
+        $table->string("meta_description");
         $table->integer('sort_order');
+        $table->string('slug',256);
         $table->string('image',256);
         $table->integer('status');
       });

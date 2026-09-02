@@ -1,0 +1,16 @@
+<?php
+
+namespace App\Features\Brand\Admin\Controllers;
+
+use App\Features\Brand\Admin\Actions\ShowBrandAction;
+use App\Features\Brand\Admin\DTOs\ShowBrandDTO;
+use App\Features\Brand\Admin\Requests\ShowBrandRequest;
+use App\Http\Controllers\Controller;
+
+class ShowBrandController extends Controller{
+  public function __invoke(ShowBrandRequest $request,ShowBrandAction $action) {
+    $dto = ShowBrandDTO::fromArray($request->validated());
+    $resrouce = new ShowBrandResource($action->handle($dto));
+    return $resource;
+  }
+}
