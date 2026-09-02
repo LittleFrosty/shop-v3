@@ -206,10 +206,11 @@ class DatabaseSeeder extends Seeder
             'out_of_stock_status' => 0,
             'brand_id' => $brandNike,
             'status' => 1,
+            'url' => 'oak-dining-chair',
             'sort_order' => 1,
             'created_at' => $now,
             'updated_at' => $now,
-        ], 'product_id');
+        ], 'id');
         $productLamp = DB::table('product')->insertGetId([
             'price' => 49.90,
             'discount' => 0,
@@ -220,10 +221,11 @@ class DatabaseSeeder extends Seeder
             'quantity' => 80,
             'brand_id' => $brandNike,
             'status' => 1,
+            'url' => 'desk-lamp',
             'sort_order' => 2,
             'created_at' => $now,
             'updated_at' => $now,
-        ], 'product_id');
+        ], 'id');
         $productHammer = DB::table('product')->insertGetId([
             'price' => 19.90,
             'discount' => 2.00,
@@ -234,10 +236,11 @@ class DatabaseSeeder extends Seeder
             'quantity' => 120,
             'brand_id' => $brandAcme,
             'status' => 1,
+            'url' => 'claw-hammer',
             'sort_order' => 3,
             'created_at' => $now,
             'updated_at' => $now,
-        ], 'product_id');
+        ], 'id');
         $productDesk = DB::table('product')->insertGetId([
             'price' => 299.00,
             'discount' => 30.00,
@@ -248,10 +251,11 @@ class DatabaseSeeder extends Seeder
             'quantity' => 8,
             'brand_id' => $brandNike,
             'status' => 1,
+            'url' => 'standing-desk',
             'sort_order' => 4,
             'created_at' => $now,
             'updated_at' => $now,
-        ], 'product_id');
+        ], 'id');
 
         DB::table('product_description')->insert([
             [
@@ -259,7 +263,6 @@ class DatabaseSeeder extends Seeder
                 'title' => 'Oak dining chair',
                 'description' => 'Solid oak chair with cotton seat.',
                 'tags' => 'chair,oak,dining',
-                'url' => 'oak-dining-chair',
                 'meta_title' => 'Oak dining chair',
                 'meta_description' => 'Solid oak dining chair',
             ],
@@ -268,7 +271,6 @@ class DatabaseSeeder extends Seeder
                 'title' => 'Desk lamp',
                 'description' => 'Adjustable LED desk lamp.',
                 'tags' => 'lamp,led,desk',
-                'url' => 'desk-lamp',
                 'meta_title' => 'Desk lamp',
                 'meta_description' => 'LED desk lamp',
             ],
@@ -277,7 +279,6 @@ class DatabaseSeeder extends Seeder
                 'title' => 'Claw hammer',
                 'description' => 'Steel claw hammer with rubber grip.',
                 'tags' => 'hammer,tools',
-                'url' => 'claw-hammer',
                 'meta_title' => 'Claw hammer',
                 'meta_description' => 'Steel claw hammer',
             ],
@@ -286,7 +287,6 @@ class DatabaseSeeder extends Seeder
                 'title' => 'Standing desk',
                 'description' => 'Height-adjustable standing desk.',
                 'tags' => 'desk,office',
-                'url' => 'standing-desk',
                 'meta_title' => 'Standing desk',
                 'meta_description' => 'Adjustable standing desk',
             ],

@@ -18,6 +18,8 @@ return new class extends Migration
             $table->unsignedBigInteger('product_id')->unique();
             $table->string('title', 256)->fullText();
             $table->longText('description')->fullText();
+            $table->string('meta_title')->nullable();
+            $table->string('meta_description')->nullable();
             $table->longText('tags');
         });
     }

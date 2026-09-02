@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up(){
       Schema::create('product', function (Blueprint $table) {
-        $table->bigIncrements('product_id');
+        $table->id('id');
         $table->decimal('price',8,2)->index();
         $table->decimal('discount',8,2);
         $table->decimal('wholesale',8,2);
@@ -26,6 +26,7 @@ return new class extends Migration
         $table->integer('out_of_stock_status')->default(0);
         $table->unsignedBigInteger('brand_id')->nullable()->index();
         $table->integer('status')->index();
+        $table->string('url',256)->unique()->index();
         $table->integer('sort_order')->index();
         $table->timestamps();
       });
