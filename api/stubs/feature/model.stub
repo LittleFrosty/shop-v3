@@ -4,7 +4,9 @@ namespace App\Features\{{ feature }}\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class {{ feature }} extends Model
-{
-    protected $guarded = [];
+class {{ feature }} extends Model{
+  protected $guarded = [];
+  public $table = '';
+  protected $fillable = [];
+  public $timestamps = false;
 }

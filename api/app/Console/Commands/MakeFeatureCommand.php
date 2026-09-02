@@ -57,7 +57,7 @@ class MakeFeatureCommand extends Command
     );
 
     // Admin CRUD files
-    foreach (['Store', 'Update', 'Delete', 'Show', 'Index'] as $operation) {
+    foreach (['Store', 'Update', 'Delete', 'Show', 'List','Resource'] as $operation) {
       $this->createAdminOperationFiles(
         files: $files,
         adminPath: $adminPath,
@@ -71,36 +71,39 @@ class MakeFeatureCommand extends Command
     return self::SUCCESS;
   }
 
-  private function createAdminOperationFiles(
-    Filesystem $files,
-    string $adminPath,
-    string $feature,
-    string $operation
-  ): void {
+  private function createAdminOperationFiles(Filesystem $files,string $adminPath,string $feature,string $operation): void {
     $filesToCreate = [
-      [
+      "controller" => [
         'stub' => 'admin/controller.stub',
         'path' => "{$adminPath}/Controllers/{$operation}{$feature}Controller.php",
       ],
-      [
+      "request" => [
         'stub' => 'admin/request.stub',
         'path' => "{$adminPath}/Requests/{$operation}{$feature}Request.php",
       ],
-      [
+      "dto" => [
         'stub' => 'admin/dto.stub',
         'path' => "{$adminPath}/DTOs/{$operation}{$feature}DTO.php",
       ],
-      [
+      "action" => [
         'stub' => 'admin/action.stub',
         'path' => "{$adminPath}/Actions/{$operation}{$feature}Action.php",
       ],
-      [
+      "query" => [
         'stub' => 'admin/query.stub',
         'path' => "{$adminPath}/Queries/{$operation}{$feature}Query.php",
       ],
+      "resource" => [
+        'stub' => 'admin/resource.stub',
+        'path' => "{$adminPath}/Resources/{$operation}{$feature}Resource.php",
+      ],
     ];
+    
+    foreach ($filesToCreate as $key => $file ) {
+      if ($operation === 'Delete' && in_array($key, ['dto', 'query', 'resource'], true)) {
+        continue;
+      }
 
-    foreach ($filesToCreate as $file) {
       $this->createFile(
         files: $files,
         stubName: $file['stub'],

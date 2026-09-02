@@ -5,10 +5,8 @@ namespace App\Features\{{ feature }}\Admin\Queries;
 use App\Features\{{ feature }}\Admin\DTOs\{{ operation }}{{ feature }}DTO;
 use App\Features\{{ feature }}\Models\{{ feature }};
 
-class {{ operation }}{{ feature }}Query
-{
-    public function handle({{ operation }}{{ feature }}DTO $dto): mixed
-    {
-        return {{ feature }}::query()->get();
-    }
+class {{ operation }}{{ feature }}Query{
+  public function handle({{ operation }}{{ feature }}DTO $dto): mixed{
+    return {{ feature }}::query()->get();
+  }
 }
