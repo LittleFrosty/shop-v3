@@ -16,7 +16,19 @@ class StoreCategoryRequest extends FormRequest{
   //}
 
   public function rules(): array{
-    return [];
+    return [
+      "top"               => ["required"],
+      "status"            => ["required"],
+      "image"             => ["required"],
+      "slug"              => ["required"],
+      "parent_id"         => ["required"],
+      "depth"             => ["required"],
+      "sort_order"        => ["required"],
+      "title"             => ["required"],
+      "description"       => ["required"],
+      "meta_title"        => ["required"],
+      "meta_description"  => ["required"],
+    ];
   }
 
   public function messages(): array{

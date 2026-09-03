@@ -15,9 +15,11 @@ return new class extends Migration
     {
         Schema::create('category_description', function (Blueprint $table) {
           $table->bigIncrements('id');
+          $table->unsignedBigInteger('category_id')->index();
           $table->longText('title');
           $table->longText('description');
-          $table->unsignedBigInteger('category_id')->index();
+          $table->string('meta_title',256);
+          $table->string('meta_description',256);
         });
     }
 

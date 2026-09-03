@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('product_description', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('product_id')->unique();
-            $table->string('title', 256)->fullText();
-            $table->longText('description')->fullText();
+            $table->string('title', 256);
+            $table->longText('description');
             $table->string('meta_title')->nullable();
             $table->string('meta_description')->nullable();
             $table->longText('tags');
