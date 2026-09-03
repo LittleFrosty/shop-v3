@@ -6,7 +6,7 @@ use App\Features\Brand\Admin\DTOs\ShowBrandDTO;
 use App\Features\Brand\Models\Brand;
 
 class ShowBrandQuery{
-  public function handle(ShowBrandDTO $dto): mixed{
-    return Brand::query()->get();
+  public function handle(ShowBrandDTO $dto): Brand{
+    return Brand::get();
   }
 }

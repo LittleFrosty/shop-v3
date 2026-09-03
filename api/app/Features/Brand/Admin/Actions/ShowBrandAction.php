@@ -2,10 +2,11 @@
 
 namespace App\Features\Brand\Admin\Actions;
 
-use App\Features\Brand\Admin\DTOs\ShowBrandDTO;
-
 class ShowBrandAction{
-  public function handle(ShowBrandDTO $dto): mixed{
-    //
+
+  public function __construct(){}
+  
+  public function handle(){
+    
   }
 }
