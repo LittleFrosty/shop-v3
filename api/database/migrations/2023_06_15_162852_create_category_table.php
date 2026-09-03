@@ -15,7 +15,8 @@ return new class extends Migration
       Schema::create('category', function (Blueprint $table) {
         $table->bigIncrements('id');
         $table->boolean('top')->index();
-        $table->integer('status');
+        $table->string('status',12);
+        $table->string('slug',256);
         $table->longText('image')->nullable();
         $table->unsignedBigInteger('parent_id')->nullable()->index();
         $table->integer('depth')->default(0);
