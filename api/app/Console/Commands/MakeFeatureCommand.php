@@ -57,7 +57,7 @@ class MakeFeatureCommand extends Command
     );
 
     // Admin CRUD files
-    foreach (['Store', 'Update', 'Delete', 'Show', 'List','Resource'] as $operation) {
+    foreach (['Store', 'Update', 'Delete', 'Show', 'List'] as $operation) {
       $this->createAdminOperationFiles(
         files: $files,
         adminPath: $adminPath,
@@ -101,6 +101,14 @@ class MakeFeatureCommand extends Command
     
     foreach ($filesToCreate as $key => $file ) {
       if ($operation === 'Delete' && in_array($key, ['dto', 'query', 'resource'], true)) {
+        continue;
+      }
+
+      if ($operation === 'Store' && in_array($key, ['query','resource'], true)) {
+        continue;
+      }
+
+      if ($operation === 'Update' && in_array($key, ['query', 'resource'], true)) {
         continue;
       }
 
