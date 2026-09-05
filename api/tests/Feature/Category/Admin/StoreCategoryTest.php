@@ -7,9 +7,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class StoreCategoryTest extends TestCase{
-    use RefreshDatabase;
-
-    public function test_it_stores_a_category_with_description(): void{
+    public function test_if_category_creating_works(): void{
       $payload = [
         'top'               => true,
         'status'            => Status::ENABLED->value,
@@ -17,6 +15,7 @@ class StoreCategoryTest extends TestCase{
         'slug'              => 'electronics',
         'parent_id'         => 0,
         'depth'             => 0,
+        'views'             => 5,
         'sort_order'        => 1,
         'title'             => 'Electronics',
         'description'       => 'All electronics',

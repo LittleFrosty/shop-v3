@@ -17,6 +17,7 @@ return new class extends Migration
         $table->boolean('top')->index();
         $table->string('status',12);
         $table->string('slug',256);
+        $table->integer('views');
         $table->longText('image')->nullable();
         $table->unsignedBigInteger('parent_id')->nullable()->index();
         $table->integer('depth')->default(0);

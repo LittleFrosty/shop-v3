@@ -13,13 +13,14 @@ class StoreCategoryAction{
   public function __construct(){}
   
   public function handle(StoreCategoryDTO $dto){
-    DB::transaction(function() use($dto) {
+    return DB::transaction(function() use($dto) {
       $category = Category::create([
         'top'               => $dto->top,
         'status'            => $dto->status->value,
         'image'             => $dto->image,
         'parent_id'         => $dto->parent_id,
         'depth'             => $dto->depth,
+        'views'             => $dto->views,
         'sort_order'        => $dto->sort_order,
         'slug'              => Str::slug($dto->title),
       ]);
@@ -30,7 +31,6 @@ class StoreCategoryAction{
         'meta_title'        => $dto->meta_title,
         'meta_description'  => $dto->meta_description,
       ]);
-
     });
   }
 }
