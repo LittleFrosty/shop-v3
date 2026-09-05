@@ -13,6 +13,7 @@ readonly class StoreCategoryDTO{
     public int $parent_id,
     public int $depth,
     public int $sort_order,
+    public int $views,
     public string $title,
     public string $description,
     public string $meta_title,
@@ -23,6 +24,7 @@ readonly class StoreCategoryDTO{
     return new self(
       top:              $data["top"],
       status:           Status::from($data["status"]),
+      views:            $data["views"] ?? 0,
       image:            $data["image"],
       slug:             $data["slug"],
       parent_id:        $data["parent_id"],

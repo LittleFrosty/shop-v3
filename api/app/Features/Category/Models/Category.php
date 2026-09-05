@@ -14,18 +14,19 @@ class Category extends Model{
     "status",
     "image",
     "slug",
+    "views",
     "parent_id",
     "depth",
     "sort_order",
   ];
-  
 
   protected function casts(): array{
     return [
-      'status' => Status::class,
+      'status'      => Status::class,
+      'created_at'  => "datetime",
+      'updated_at'  => "datetime",
     ];
   }
-
   public function description():HasOne{
     return $this->hasOne(CategoryDescription::class,"category_id");
   }

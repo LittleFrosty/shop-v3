@@ -7,6 +7,8 @@ use App\Features\Category\Models\Category;
 
 class ShowCategoryQuery{
   public function handle(ShowCategoryDTO $dto): Category{
-    return Category::get();
+    return Category::query()
+    ->with(['description'])
+    ->where('id',$dto->id)->first();
   }
 }
