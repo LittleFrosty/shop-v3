@@ -272,19 +272,10 @@ List endpoints return paginated data:
 
 ## Testing
 
-Run tests inside the PHP container. The PHPUnit configuration uses MySQL by default:
+The test suite runs against MySQL. The PHPUnit configuration uses the dedicated `shop_v2` test database.
 
 ```bash
 docker compose exec php php artisan test
-```
-
-To run the suite inside Docker with an isolated in-memory SQLite database:
-
-```bash
-docker compose exec \
-  -e DB_CONNECTION=sqlite \
-  -e DB_DATABASE=:memory: \
-  php php artisan test
 ```
 
 ## Creating a feature
