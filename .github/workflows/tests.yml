@@ -6,28 +6,40 @@ on:
     branches:
       - master
 
+env:
+  MYSQL_ROOT_PASSWORD: secret
+  MYSQL_DATABASE: shop_v2
+  MYSQL_PORT: 3306
+
 jobs:
   tests:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: api
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.5'
-
-      - name: Install dependencies
-        run: composer install --no-interaction --prefer-dist
-
       - name: Prepare environment
         run: |
-          cp .env.example .env
-          php artisan key:generate
+          printf 'MYSQL_ROOT_PASSWORD=%s\nMYSQL_DATABASE=%s\nMYSQL_PORT=%s\n' \
+            "$MYSQL_ROOT_PASSWORD" "$MYSQL_DATABASE" "$MYSQL_PORT" > .env
+
+          cp api/.env.example api/.env
+
+          sed -i "s/^DB_PASSWORD=.*/DB_PASSWORD=${MYSQL_ROOT_PASSWORD}/" api/.env
+          sed -i "s/^DB_DATABASE=.*/DB_DATABASE=${MYSQL_DATABASE}/" api/.env
+
+      - name: Build and start Docker services
+        run: docker compose up -d --build --wait --wait-timeout 180
+
+      - name: Install dependencies
+        run: docker compose exec -T php composer install --no-interaction --prefer-dist
+
+      - name: Generate application key
+        run: docker compose exec -T php php artisan key:generate
+
+      - name: Run migrations
+        run: docker compose exec -T php php artisan migrate --force
 
       - name: Run tests
-        run: php artisan test
+        run: docker compose exec -T php php artisan test
