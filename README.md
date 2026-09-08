@@ -126,14 +126,14 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-Create the schema and start the API:
+Database migrations and the running API use Docker:
 
 ```bash
-php artisan migrate
-php artisan serve
+make up
+make migrate
 ```
 
-By default, the local API is available at `http://127.0.0.1:8000`.
+The API is available at `http://localhost`.
 
 ## Frontend setup
 
@@ -194,8 +194,8 @@ Docker Compose waits for MySQL to become healthy before starting PHP.
 make shell
 composer install
 php artisan key:generate
-php artisan migrate
 exit
+make migrate
 ```
 
 The services are available at:
@@ -272,17 +272,19 @@ List endpoints return paginated data:
 
 ## Testing
 
-The PHPUnit configuration uses MySQL by default:
+Run tests inside the PHP container. The PHPUnit configuration uses MySQL by default:
 
 ```bash
-cd api
-php artisan test
+docker compose exec php php artisan test
 ```
 
-To run the suite with an isolated in-memory SQLite database:
+To run the suite inside Docker with an isolated in-memory SQLite database:
 
 ```bash
-DB_CONNECTION=sqlite DB_DATABASE=:memory: php artisan test
+docker compose exec \
+  -e DB_CONNECTION=sqlite \
+  -e DB_DATABASE=:memory: \
+  php php artisan test
 ```
 
 ## Creating a feature
