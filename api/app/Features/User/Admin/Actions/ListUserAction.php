@@ -2,11 +2,14 @@
 
 namespace App\Features\User\Admin\Actions;
 
-class ListUserAction{
+use App\Features\User\Admin\DTOs\ListUserDTO;
+use App\Features\User\Admin\Queries\ListUserQuery;
+use Illuminate\Pagination\LengthAwarePaginator;
 
-  public function __construct(){}
-  
-  public function handle(){
-    
+class ListUserAction{
+  public function __construct(private readonly ListUserQuery $query){}
+
+  public function handle(ListUserDTO $dto): LengthAwarePaginator{
+    return $this->query->handle($dto);
   }
 }

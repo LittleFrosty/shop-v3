@@ -9,8 +9,8 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Product extends Model{
   public $table = 'product';
+
   protected $fillable = [
-    'product_id',
     'price',
     'discount',
     'wholesale',
@@ -23,20 +23,23 @@ class Product extends Model{
     'out_of_stock_status',
     'brand_id',
     'status',
+    'url',
     'sort_order',
   ];
 
-  protected function casts():array{
+  protected function casts(): array{
     return [
       'status' => Status::class,
+      'created_at' => 'datetime',
+      'updated_at' => 'datetime',
     ];
   }
 
-  public function description():HasOne{
+  public function description(): HasOne{
     return $this->hasOne(ProductDescription::class, 'product_id', 'id');
   }
 
-  public function categories():HasMany{
-    return $this->hasMany(ProductToCategory::class,'product_id','id');
+  public function categories(): HasMany{
+    return $this->hasMany(ProductToCategory::class, 'product_id', 'id');
   }
 }

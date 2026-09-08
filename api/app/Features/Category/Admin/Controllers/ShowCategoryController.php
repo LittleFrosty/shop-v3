@@ -12,6 +12,6 @@ class ShowCategoryController extends Controller{
   public function __invoke(ShowCategoryRequest $request,ShowCategoryAction $action) {
     $dto = ShowCategoryDTO::fromArray($request->validated());
     $data = $action->handle($dto);
-    return new ShowCategoryResource($data); 
+    return ShowCategoryResource::make($data); 
   }
 }

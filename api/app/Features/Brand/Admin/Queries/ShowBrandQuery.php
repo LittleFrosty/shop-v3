@@ -7,6 +7,6 @@ use App\Features\Brand\Models\Brand;
 
 class ShowBrandQuery{
   public function handle(ShowBrandDTO $dto): Brand{
-    return Brand::get();
+    return Brand::query()->findOrFail($dto->id);
   }
 }

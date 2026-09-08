@@ -2,21 +2,37 @@
 
 namespace App\Features\Category\Admin\Requests;
 
+use App\Enums\Status;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateCategoryRequest extends FormRequest{
   public function authorize(): bool{
     return true;
   }
-  ## Uncomment this for get ID routes so that the request works
-  //protected function prepareForValidation(): void{
-    //$this->merge([
-      //'id' => $this->route('id'),
-    //]);
-  //}
+
+  protected function prepareForValidation(): void{
+    $this->merge([
+      'id' => $this->route('id'),
+    ]);
+  }
 
   public function rules(): array{
-    return [];
+    return [
+      'id'                => ['required', 'integer', 'exists:category,id'],
+      'top'               => ['sometimes', 'boolean'],
+      'status'            => ['sometimes', 'string', Rule::enum(Status::class)],
+      'image'             => ['sometimes', 'nullable', 'string'],
+      'slug'              => ['sometimes', 'string', 'max:256'],
+      'views'             => ['sometimes', 'integer', 'min:0'],
+      'parent_id'         => ['sometimes', 'nullable', 'integer', 'min:0', Rule::notIn([$this->route('id')])],
+      'depth'             => ['sometimes', 'integer', 'min:0'],
+      'sort_order'        => ['sometimes', 'integer'],
+      'title'             => ['sometimes', 'string', 'max:256'],
+      'description'       => ['sometimes', 'string'],
+      'meta_title'        => ['sometimes', 'string', 'max:256'],
+      'meta_description'  => ['sometimes', 'string', 'max:256'],
+    ];
   }
 
   public function messages(): array{

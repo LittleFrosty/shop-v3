@@ -2,11 +2,14 @@
 
 namespace App\Features\User\Admin\Actions;
 
-class ShowUserAction{
+use App\Features\User\Admin\DTOs\ShowUserDTO;
+use App\Features\User\Admin\Queries\ShowUserQuery;
+use App\Features\User\Models\User;
 
-  public function __construct(){}
-  
-  public function handle(){
-    
+class ShowUserAction{
+  public function __construct(private readonly ShowUserQuery $query){}
+
+  public function handle(ShowUserDTO $dto): User{
+    return $this->query->handle($dto);
   }
 }

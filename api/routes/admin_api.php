@@ -1,5 +1,15 @@
 <?php
 
+use App\Features\Cart\Admin\Controllers\DeleteCartController;
+use App\Features\Cart\Admin\Controllers\ListCartController;
+use App\Features\Cart\Admin\Controllers\ShowCartController;
+use App\Features\Cart\Admin\Controllers\StoreCartController;
+use App\Features\Cart\Admin\Controllers\UpdateCartController;
+use App\Features\Information\Admin\Controllers\DeleteInformationController;
+use App\Features\Information\Admin\Controllers\ListInformationController;
+use App\Features\Information\Admin\Controllers\ShowInformationController;
+use App\Features\Information\Admin\Controllers\StoreInformationController;
+use App\Features\Information\Admin\Controllers\UpdateInformationController;
 use App\Features\Product\Admin\Controllers\DeleteProductController;
 use App\Features\Product\Admin\Controllers\ListProductController;
 use App\Features\Product\Admin\Controllers\ShowProductController;
@@ -15,6 +25,11 @@ use App\Features\Category\Admin\Controllers\ListCategoryController;
 use App\Features\Category\Admin\Controllers\ShowCategoryController;
 use App\Features\Category\Admin\Controllers\StoreCategoryController;
 use App\Features\Category\Admin\Controllers\UpdateCategoryController;
+use App\Features\User\Admin\Controllers\DeleteUserController;
+use App\Features\User\Admin\Controllers\ListUserController;
+use App\Features\User\Admin\Controllers\ShowUserController;
+use App\Features\User\Admin\Controllers\StoreUserController;
+use App\Features\User\Admin\Controllers\UpdateUserController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('product')->group(function () {
@@ -53,3 +68,38 @@ Route::prefix('brand')->group(function () {
     Route::delete('/{id}/delete', DeleteBrandController::class)->whereNumber('id');
 });
 
+Route::prefix('user')->group(function () {
+    Route::get('/list', ListUserController::class);
+
+    Route::post('/store', StoreUserController::class);
+
+    Route::get('/{id}', ShowUserController::class)->whereNumber('id');
+
+    Route::patch('/{id}/update', UpdateUserController::class)->whereNumber('id');
+
+    Route::delete('/{id}/delete', DeleteUserController::class)->whereNumber('id');
+});
+
+Route::prefix('information')->group(function () {
+    Route::get('/list', ListInformationController::class);
+
+    Route::post('/store', StoreInformationController::class);
+
+    Route::get('/{id}', ShowInformationController::class)->whereNumber('id');
+
+    Route::patch('/{id}/update', UpdateInformationController::class)->whereNumber('id');
+
+    Route::delete('/{id}/delete', DeleteInformationController::class)->whereNumber('id');
+});
+
+Route::prefix('cart')->group(function () {
+    Route::get('/list', ListCartController::class);
+
+    Route::post('/store', StoreCartController::class);
+
+    Route::get('/{id}', ShowCartController::class)->whereNumber('id');
+
+    Route::patch('/{id}/update', UpdateCartController::class)->whereNumber('id');
+
+    Route::delete('/{id}/delete', DeleteCartController::class)->whereNumber('id');
+});

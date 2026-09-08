@@ -2,28 +2,25 @@
 
 namespace App\Features\Category\Admin\Requests;
 
+use App\Enums\Status;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ListCategoryRequest extends FormRequest{
   public function authorize(): bool{
     return true;
   }
-  ## Uncomment this for get ID routes so that the request works
-  //protected function prepareForValidation(): void{
-    //$this->merge([
-      //'id' => $this->route('id'),
-    //]);
-  //}
-
   public function rules(): array{
-    return [];
+    return [
+      "title"   => ['sometimes','string'],
+      "status"  => ['sometimes','string', Rule::enum(Status::class)],
+    ];
   }
 
   public function messages(): array{
     return [
-      'id.required' => 'Category ID is required.',
-      'id.integer'  => 'Category ID must be a number.',
-      'id.exists'   => 'The selected Category does not exist.',
+      'title.string' => 'Title must be a string',
+      'status.enum'  => 'Status is invalid.',
     ];
   }
 }

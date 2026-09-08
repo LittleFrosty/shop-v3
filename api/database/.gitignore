@@ -1,1 +1,4 @@
 *.sqlite*
+seeders/categories.json
+seeders/brands.json
+seeders/products.json

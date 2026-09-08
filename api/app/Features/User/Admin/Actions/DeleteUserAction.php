@@ -2,11 +2,11 @@
 
 namespace App\Features\User\Admin\Actions;
 
-class DeleteUserAction{
+use App\Features\User\Admin\DTOs\DeleteUserDTO;
+use App\Features\User\Models\User;
 
-  public function __construct(){}
-  
-  public function handle(){
-    
+class DeleteUserAction{
+  public function handle(DeleteUserDTO $dto): void{
+    User::query()->findOrFail($dto->id)->delete();
   }
 }
