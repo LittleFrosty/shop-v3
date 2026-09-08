@@ -9,7 +9,9 @@ on:
 jobs:
   tests:
     runs-on: ubuntu-latest
-
+    default:
+      run:
+        working-directory: ./api
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
