@@ -4,9 +4,12 @@ namespace Tests\Feature\Category\Admin;
 
 use App\Enums\Status;
 use App\Features\Category\Models\Category;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class ShowCategoryTest extends TestCase{
+  use RefreshDatabase;
+
   public function test_it_returns_the_category_json(): void{
     $category = Category::create([
         'top'        => true,

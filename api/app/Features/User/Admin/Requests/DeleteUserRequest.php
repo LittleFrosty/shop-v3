@@ -8,22 +8,14 @@ class DeleteUserRequest extends FormRequest{
   public function authorize(): bool{
     return true;
   }
-  ## Uncomment this for get ID routes so that the request works
-  //protected function prepareForValidation(): void{
-    //$this->merge([
-      //'id' => $this->route('id'),
-    //]);
-  //}
 
-  public function rules(): array{
-    return [];
+  protected function prepareForValidation(): void{
+    $this->merge(['id' => $this->route('id')]);
   }
 
-  public function messages(): array{
+  public function rules(): array{
     return [
-      'id.required' => 'User ID is required.',
-      'id.integer'  => 'User ID must be a number.',
-      'id.exists'   => 'The selected User does not exist.',
+      'id' => ['required', 'integer', 'exists:users,id'],
     ];
   }
 }

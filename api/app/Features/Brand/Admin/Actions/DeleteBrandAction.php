@@ -2,11 +2,11 @@
 
 namespace App\Features\Brand\Admin\Actions;
 
-class DeleteBrandAction{
+use App\Features\Brand\Admin\DTOs\DeleteBrandDTO;
+use App\Features\Brand\Models\Brand;
 
-  public function __construct(){}
-  
-  public function handle(){
-    
+class DeleteBrandAction{
+  public function handle(DeleteBrandDTO $dto): void{
+    Brand::query()->findOrFail($dto->id)->delete();
   }
 }

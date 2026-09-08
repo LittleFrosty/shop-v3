@@ -7,6 +7,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class StoreCategoryTest extends TestCase{
+    use RefreshDatabase;
+
     public function test_if_category_creating_works(): void{
       $payload = [
         'top'               => true,

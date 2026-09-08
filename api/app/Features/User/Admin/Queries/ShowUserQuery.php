@@ -7,6 +7,6 @@ use App\Features\User\Models\User;
 
 class ShowUserQuery{
   public function handle(ShowUserDTO $dto): User{
-    return User::get();
+    return User::query()->findOrFail($dto->id);
   }
 }

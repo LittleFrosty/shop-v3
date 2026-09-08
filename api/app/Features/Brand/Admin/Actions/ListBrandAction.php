@@ -2,11 +2,14 @@
 
 namespace App\Features\Brand\Admin\Actions;
 
-class ListBrandAction{
+use App\Features\Brand\Admin\DTOs\ListBrandDTO;
+use App\Features\Brand\Admin\Queries\ListBrandQuery;
+use Illuminate\Pagination\LengthAwarePaginator;
 
-  public function __construct(){}
-  
-  public function handle(){
-    
+class ListBrandAction{
+  public function __construct(private readonly ListBrandQuery $query){}
+
+  public function handle(ListBrandDTO $dto): LengthAwarePaginator{
+    return $this->query->handle($dto);
   }
 }

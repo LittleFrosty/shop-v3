@@ -7,8 +7,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class ListUserResource extends JsonResource{
   public function toArray(Request $request): array{
-    return [
-    
-    ];
+    return (new ShowUserResource($this->resource))->toArray($request);
   }
 }

@@ -24,8 +24,8 @@ class ShowProductRequest extends FormRequest{
   public function messages(): array{
     return [
       'id.required' => 'Product ID is required.',
-      'id.integer'  => 'Product ID must be a number.',
-      'id.exists'   => 'The selected Product does not exist.',
+      'id.integer' => 'Product ID must be a number.',
+      'id.exists' => 'The selected Product does not exist.',
     ];
   }
 }
