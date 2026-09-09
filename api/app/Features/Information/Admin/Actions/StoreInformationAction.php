@@ -8,5 +8,6 @@ use App\Features\Information\Models\Information;
 class StoreInformationAction{
   public function handle(StoreInformationDTO $dto): Information{
     return Information::query()->create($dto->toArray());
+    
   }
 }
