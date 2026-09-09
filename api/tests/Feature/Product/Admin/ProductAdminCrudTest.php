@@ -186,7 +186,7 @@ class ProductAdminCrudTest extends TestCase
             'bundle_of_models' => null,
             'out_of_stock_status' => 0,
             'brand_id' => null,
-            'status' => "Break-on-purpoose",
+            'status' => Status::ENABLED->value,
             'url' => 'model-001',
             'sort_order' => 1,
             'title' => 'Product One',
